@@ -18,6 +18,14 @@ public:
 
     vector<float> getFFTData();
 
+    // Frequency band energy accessors
+    float getBass() const;
+    float getMid() const;
+    float getTreble() const;
+    float getBassAtt() const;
+    float getMidAtt() const;
+    float getTrebleAtt() const;
+
     bool startProcessing();
 
     void cleanup();

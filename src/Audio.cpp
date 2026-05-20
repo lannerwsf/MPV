@@ -62,6 +62,33 @@ vector<float> AudioProcessor::getFFTData() {
     return fftProcessor->getMagnitudes();
 }
 
+// --- Frequency band energy accessors ---
+// These must be called AFTER getFFTData() in the same render cycle.
+
+float AudioProcessor::getBass() const {
+    return fftProcessor ? fftProcessor->getBass() : 0.0f;
+}
+
+float AudioProcessor::getMid() const {
+    return fftProcessor ? fftProcessor->getMid() : 0.0f;
+}
+
+float AudioProcessor::getTreble() const {
+    return fftProcessor ? fftProcessor->getTreble() : 0.0f;
+}
+
+float AudioProcessor::getBassAtt() const {
+    return fftProcessor ? fftProcessor->getBassAtt() : 0.0f;
+}
+
+float AudioProcessor::getMidAtt() const {
+    return fftProcessor ? fftProcessor->getMidAtt() : 0.0f;
+}
+
+float AudioProcessor::getTrebleAtt() const {
+    return fftProcessor ? fftProcessor->getTrebleAtt() : 0.0f;
+}
+
 int AudioProcessor::audioCallback(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer,
                                    const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData) {
     AudioProcessor* processor = static_cast<AudioProcessor*>(userData);
